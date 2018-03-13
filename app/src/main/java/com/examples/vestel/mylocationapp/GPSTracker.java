@@ -17,6 +17,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.support.annotation.NonNull;
+import android.widget.Toast;
 
 /**
  * Created by vestel on 13.03.2018.
@@ -68,6 +69,8 @@ public class GPSTracker extends Service implements LocationListener{
     }
 
     public Location getLocation() {
+        //location= null;
+
         try {
             locationManager = (LocationManager) mContext.getSystemService(LOCATION_SERVICE);
             // getting GPS status
@@ -83,11 +86,13 @@ public class GPSTracker extends Service implements LocationListener{
                 // First get location from Network Provider
                 if (isGPSEnabled) {
                     if (location == null) {
+
                         if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.WRITE_CALL_LOG) != PackageManager.PERMISSION_GRANTED) {
+
 
                             //return;
                         }else {
-                            //Toast.makeText(this, R.string.error_permission_map, Toast.LENGTH_LONG).show();
+
                         }
                         //"gps" location provider requires ACCESS_FINE_LOCATION permission.
                         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, MIN_TIME_BW_UPDATES, MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
